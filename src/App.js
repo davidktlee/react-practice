@@ -1,11 +1,8 @@
-import FunctionalComponent from './FunctionalComponent'
+import React from 'react'
+import LoginForm from './LoginForm'
 
 const App = () => {
-  return (
-    <>
-      <FunctionalComponent />
-    </>
-  )
+  return <LoginForm />
 }
 
 export default App
