@@ -1,8 +1,8 @@
 import React, { useState, useRef } from 'react'
 import styled from 'styled-components'
 import GlobalStyle from './GlobalStlye'
-import { EmailCheck } from './EmailCheck'
-
+import { EmailCheck } from './emailCheck'
+import {validate} from './utils/validate'
 const LoginDiv = styled.div`
   width: 500px;
   height: 100%;
@@ -34,6 +34,13 @@ const LoginForm = () => {
     password: '',
     passwordConfirm: '',
   })
+
+  const [userName, setUserName] = useState('')
+  const [userEmail, setUserEmail] = useState('')
+  const [userSex, setUserSex] = useState('')
+  const [userPassword, setUserPassword] = useState('')
+  const [userPasswordConfirm, setUserPasswordConfirm] = useState('')
+
   const { username, email, sex, password, passwordConfirm } = user
   const [userlist, setUserlist] = useState([])
   const [countindex, setCountIndex] = useState(0)
@@ -41,16 +48,42 @@ const LoginForm = () => {
   const emailInput = useRef()
   const passwordInput = useRef()
   const sexInput = useRef()
+
   const handleUser = (e) => {
     setUser({
       ...user,
       [e.target.name]: e.target.value,
     })
+
+  }
+  // 생명주기 -> 라이프사이클 컴포넌트 -> useEffect
+  // 
+
+  모듈 : 프로그램의 최소 단위? 
+  모듈화 시킨다 : 쪼갠다. 어떤 특정한 기준을 충족하는 최소단위 (특정한 기준은 사람마다, 조직마다 다름)
+
+  // useState,
+  // useEffect
+  // useMemo
+  // useCallback 
+  // useReducer -> w
+  //  
+  // 결합도를 낮추고, 응집도를 높혀라 
+  // dom 요소에 접근
+  왜 바닐라 안 쓰고 리액트 써야되냐? 
+  리액트가 뭐가 장점이냐
+  바닐라에 비해서 리액트가 뭐가 안 좋냐
+  버그 확률 
+  undefined in not a function 함수가 아닌걸 호출할려고 할 때,
+  그걸 리액트는 어떻게 해결했냐? 
+
+  const onChangeUserInput = (e) => {
+
   }
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    const userinform = {
+    const userInform = {
       username,
       email,
       sex,
@@ -58,31 +91,9 @@ const LoginForm = () => {
       passwordConfirm,
       countindex,
     }
-
-    if (userinform.password !== userinform.passwordConfirm) {
-      alert('비밀번호가 틀립니다.')
-      setUser({
-        username: '',
-        email: '',
-        password: '',
-        passwordConfirm: '',
-      })
-      userNameInput.current.focus()
-    } else if (userinform.username.length < 3) {
-      alert('이름을 3자 이상 입력하세요')
-      userNameInput.current.focus()
-    } else if (userinform.email !== EmailCheck) {
-      alert('email 형식이 올바르지 않습니다.')
-      emailInput.current.focus()
-    } else if (userinform.sex === '') {
-      alert('성별을 입력하세요')
-      sexInput.current.focus()
-    } else if (userinform.password.length < 3) {
-      alert('패스워드를 3자 이상 입력하세요')
-      passwordInput.current.focus()
-    } else {
+    if(validate(userInform, userNameInput, emailInput, sexInput, passwordInput)){
       setCountIndex((index) => (index += 1))
-      setUserlist([...userlist, userinform])
+      setUserlist([...userlist, userInform])
       setUser({
         username: '',
         email: '',
@@ -92,32 +103,62 @@ const LoginForm = () => {
       alert(`${username}, ${email}로 가입되셨습니다.`)
     }
   }
+
+  {
+    type: 'div',
+    props: [],
+    children: [
+      {
+        type: 'div',
+        props: [],
+        children: [
+          {
+            type: 'h1',
+            props:[],
+            children: ['회원가입']
+          },
+          {
+            type: 'form',
+            props: [],
+            children: [
+              {
+                type: 'input',
+                props: [{value : username}]
+              }
+            ]
+            
+          }
+        ]
+      }
+    ]
+  }
+
   return (
     <div>
       <GlobalStyle />
       <LoginDiv>
         <h1>회원가입</h1>
         <form>
-          <input
+          <Input
             type="text"
             placeholder="이름을 입력하세요"
             name="username"
             value={username}
-            onChange={handleUser}
+            onChange={setValue(setUserName)}
             ref={userNameInput}
           />
-          <input
+          <Input
             type="email"
             placeholder="이메일을 입력하세요"
             name="email"
             value={email}
-            onChange={handleUser}
+            onChange={setValue(setUserEmail)}
             ref={emailInput}
           />
           <select //
             name="sex"
             type="text"
-            onChange={handleUser}
+            onChange={setValue(setUserSex)}
             ref={sexInput}
           >
             <option value="defalut" defaultValue>
@@ -126,24 +167,25 @@ const LoginForm = () => {
             <option value="남자">남자</option>
             <option value="여자">여자</option>
           </select>
-          <input
+          <Input
             type="password"
             placeholder="패스워드를 입력하세요"
             name="password"
             value={password}
-            onChange={handleUser}
+            onChange={setValue(setUserPassword)}
             ref={passwordInput}
           />
-          <input
+          <Input
             type="password"
             placeholder="패스워드를 확인해주세요"
             name="passwordConfirm"
             value={passwordConfirm}
-            onChange={handleUser}
+            onChange={setValue(setUserPasswordConfirm)}
           />
           <button onClick={handleSubmit}>회원가입</button>
         </form>
         <Result>
+
           {userlist.map((item) => (
             <Userlist key={item.index}>
               회원가입 결과
