@@ -1,6 +1,7 @@
 import React, { useState, useRef } from 'react'
 import styled from 'styled-components'
 import GlobalStyle from './GlobalStlye'
+import { EmailCheck } from './EmailCheck'
 
 const LoginDiv = styled.div`
   width: 500px;
@@ -70,8 +71,8 @@ const LoginForm = () => {
     } else if (userinform.username.length < 3) {
       alert('이름을 3자 이상 입력하세요')
       userNameInput.current.focus()
-    } else if (userinform.email.length < 3) {
-      alert('email을 3자 이상 입력하세요')
+    } else if (userinform.email !== EmailCheck) {
+      alert('email 형식이 올바르지 않습니다.')
       emailInput.current.focus()
     } else if (userinform.sex === '') {
       alert('성별을 입력하세요')
@@ -113,7 +114,12 @@ const LoginForm = () => {
             onChange={handleUser}
             ref={emailInput}
           />
-          <select name="sex" type="text" onChange={handleUser} ref={sexInput}>
+          <select //
+            name="sex"
+            type="text"
+            onChange={handleUser}
+            ref={sexInput}
+          >
             <option value="defalut" defaultValue>
               성별을 선택해주세요
             </option>
