@@ -2,6 +2,8 @@ import React, { useState, useRef } from 'react'
 import styled from 'styled-components'
 import GlobalStyle from './GlobalStyle'
 import { validate } from './utils/validate'
+import { Btn } from './utils/buttons'
+import { Input } from './utils/inputs'
 
 const LoginDiv = styled.div`
   width: 500px;
@@ -77,7 +79,7 @@ const LoginForm = () => {
       <LoginDiv>
         <h1>회원가입</h1>
         <form>
-          <input
+          <Input
             type="text"
             placeholder="이름을 입력하세요"
             name="username"
@@ -85,7 +87,7 @@ const LoginForm = () => {
             onChange={onChange}
             ref={userNameInput}
           />
-          <input
+          <Input
             type="email"
             placeholder="이메일을 입력하세요"
             name="email"
@@ -105,7 +107,7 @@ const LoginForm = () => {
             <option value="남자">남자</option>
             <option value="여자">여자</option>
           </select>
-          <input
+          <Input
             type="password"
             placeholder="패스워드를 입력하세요"
             name="password"
@@ -113,14 +115,14 @@ const LoginForm = () => {
             onChange={onChange}
             ref={passwordInput}
           />
-          <input
+          <Input
             type="password"
             placeholder="패스워드를 확인해주세요"
             name="passwordConfirm"
             value={passwordConfirm}
             onChange={onChange}
           />
-          <button onClick={handleSubmit}>회원가입</button>
+          <Btn onClick={handleSubmit} name="회원가입"></Btn>
         </form>
         <Result>
           {userlist.map((item) => (
