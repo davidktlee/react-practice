@@ -4,6 +4,7 @@ import GlobalStyle from './GlobalStyle'
 import { validate } from './utils/validate'
 import { Btn } from './utils/buttons'
 import { Input } from './utils/inputs'
+import { Select } from './utils/selects'
 
 const LoginDiv = styled.div`
   width: 500px;
@@ -95,18 +96,16 @@ const LoginForm = () => {
             onChange={onChange}
             ref={emailInput}
           />
-          <select //
+          <Select //
             name="sex"
             type="text"
             onChange={onChange}
             ref={sexInput}
           >
-            <option value="defalut" defaultValue>
-              성별을 선택해주세요
-            </option>
-            <option value="남자">남자</option>
-            <option value="여자">여자</option>
-          </select>
+            <option value="defalut" content="성별을 선택해주세요" defaultValue></option>
+            <option value="남자" content="남자"></option>
+            <option value="여자" content="여자"></option>
+          </Select>
           <Input
             type="password"
             placeholder="패스워드를 입력하세요"
