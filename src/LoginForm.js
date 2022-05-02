@@ -1,13 +1,13 @@
 import React, { useState, useRef } from 'react'
 import styled from 'styled-components'
-import GlobalStyle from './GlobalStlye'
-import { EmailCheck } from './EmailCheck'
+import GlobalStyle from './GlobalStyle'
+import { validate } from './utils/validate'
 
 const LoginDiv = styled.div`
   width: 500px;
   height: 100%;
   border: 1px solid #666;
-  margin: 100px 0 0 300px;
+  margin: 100px auto;
   background-color: #fafaf3;
 `
 
@@ -41,7 +41,7 @@ const LoginForm = () => {
   const emailInput = useRef()
   const passwordInput = useRef()
   const sexInput = useRef()
-  const handleUser = (e) => {
+  const onChange = (e) => {
     setUser({
       ...user,
       [e.target.name]: e.target.value,
@@ -50,7 +50,7 @@ const LoginForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    const userinform = {
+    const userInform = {
       username,
       email,
       sex,
@@ -59,30 +59,9 @@ const LoginForm = () => {
       countindex,
     }
 
-    if (userinform.password !== userinform.passwordConfirm) {
-      alert('비밀번호가 틀립니다.')
-      setUser({
-        username: '',
-        email: '',
-        password: '',
-        passwordConfirm: '',
-      })
-      userNameInput.current.focus()
-    } else if (userinform.username.length < 3) {
-      alert('이름을 3자 이상 입력하세요')
-      userNameInput.current.focus()
-    } else if (userinform.email !== EmailCheck) {
-      alert('email 형식이 올바르지 않습니다.')
-      emailInput.current.focus()
-    } else if (userinform.sex === '') {
-      alert('성별을 입력하세요')
-      sexInput.current.focus()
-    } else if (userinform.password.length < 3) {
-      alert('패스워드를 3자 이상 입력하세요')
-      passwordInput.current.focus()
-    } else {
-      setCountIndex((index) => (index += 1))
-      setUserlist([...userlist, userinform])
+    if (validate(userInform, userNameInput, emailInput, sexInput, passwordInput, setUser)) {
+      setCountIndex((index) => index + 1)
+      setUserlist([...userlist, userInform])
       setUser({
         username: '',
         email: '',
@@ -103,7 +82,7 @@ const LoginForm = () => {
             placeholder="이름을 입력하세요"
             name="username"
             value={username}
-            onChange={handleUser}
+            onChange={onChange}
             ref={userNameInput}
           />
           <input
@@ -111,13 +90,13 @@ const LoginForm = () => {
             placeholder="이메일을 입력하세요"
             name="email"
             value={email}
-            onChange={handleUser}
+            onChange={onChange}
             ref={emailInput}
           />
           <select //
             name="sex"
             type="text"
-            onChange={handleUser}
+            onChange={onChange}
             ref={sexInput}
           >
             <option value="defalut" defaultValue>
@@ -131,7 +110,7 @@ const LoginForm = () => {
             placeholder="패스워드를 입력하세요"
             name="password"
             value={password}
-            onChange={handleUser}
+            onChange={onChange}
             ref={passwordInput}
           />
           <input
@@ -139,7 +118,7 @@ const LoginForm = () => {
             placeholder="패스워드를 확인해주세요"
             name="passwordConfirm"
             value={passwordConfirm}
-            onChange={handleUser}
+            onChange={onChange}
           />
           <button onClick={handleSubmit}>회원가입</button>
         </form>
