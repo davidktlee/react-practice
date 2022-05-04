@@ -1,5 +1,5 @@
 import React from 'react'
-export const Select = React.forwardRef(({ name, type, onChange, value, content }, ref) => {
+export const Select = React.forwardRef(({ name, type, onChange, children }, ref) => {
   return (
     <select //
       name={name}
@@ -7,9 +7,7 @@ export const Select = React.forwardRef(({ name, type, onChange, value, content }
       onChange={onChange}
       ref={ref}
     >
-      <option value={value}>{content}</option>
-      <option value={value}>{content}</option>
-      <option value={value}>{content}</option>
+      {children}
     </select>
   )
 })

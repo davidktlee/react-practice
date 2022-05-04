@@ -1,4 +1,4 @@
-import { emailCheck } from './emailCheck'
+import { emailCheck } from './EmailCheck'
 
 export const validate = (
   userInform,

@@ -1,10 +1,11 @@
 import React, { useState, useRef } from 'react'
 import styled from 'styled-components'
 import GlobalStyle from './GlobalStyle'
-import { validate } from './utils/validate'
-import { Btn } from './utils/buttons'
-import { Input } from './utils/inputs'
-import { Select } from './utils/selects'
+import { validate } from './utils/Validate'
+import { Btn } from './utils/Button'
+import { Input } from './utils/Inputs'
+import { Select } from './utils/Selects'
+import { Modals } from './utils/Modals'
 
 const LoginDiv = styled.div`
   width: 500px;
@@ -14,20 +15,6 @@ const LoginDiv = styled.div`
   background-color: #fafaf3;
 `
 
-const Result = styled.div`
-  width: 300px;
-  font-size: 25px;
-  margin: 50px 125px;
-  li {
-    margin: 10px 0;
-  }
-`
-const Userlist = styled.div`
-  width: 200px;
-  border: 1px solid black;
-  background-color: #f2f217;
-  padding: 20px;
-`
 /* FUNCTION */
 const LoginForm = () => {
   const [user, setUser] = useState({
@@ -44,6 +31,12 @@ const LoginForm = () => {
   const emailInput = useRef()
   const passwordInput = useRef()
   const sexInput = useRef()
+
+  const [modalState, setModalState] = useState(false)
+
+  const closeModal = () => {
+    setModalState(false)
+  }
   const onChange = (e) => {
     setUser({
       ...user,
@@ -72,11 +65,13 @@ const LoginForm = () => {
         passwordConfirm: '',
       })
       alert(`${username}, ${email}로 가입되셨습니다.`)
+      setModalState(true)
     }
   }
   return (
     <div>
       <GlobalStyle />
+      {modalState && <Modals closeModal={closeModal} userlist={userlist}></Modals>}
       <LoginDiv>
         <h1>회원가입</h1>
         <form>
@@ -102,9 +97,11 @@ const LoginForm = () => {
             onChange={onChange}
             ref={sexInput}
           >
-            <option value="defalut" content="성별을 선택해주세요" defaultValue></option>
-            <option value="남자" content="남자"></option>
-            <option value="여자" content="여자"></option>
+            <option value="defalut" defaultValue>
+              성별을 입력해주세요
+            </option>
+            <option value="남자">남자</option>
+            <option value="여자">여자</option>
           </Select>
           <Input
             type="password"
@@ -123,16 +120,6 @@ const LoginForm = () => {
           />
           <Btn onClick={handleSubmit} name="회원가입"></Btn>
         </form>
-        <Result>
-          {userlist.map((item) => (
-            <Userlist key={item.index}>
-              회원가입 결과
-              <li>이름: {item.username}</li>
-              <li>이메일: {item.email}</li>
-              <li>성별: {item.sex}</li>
-            </Userlist>
-          ))}
-        </Result>
       </LoginDiv>
     </div>
   )
