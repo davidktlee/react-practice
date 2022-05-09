@@ -1,6 +1,7 @@
-import { createGlobalStyle } from 'styled-components'
+import React from 'react'
+import { Global, css } from '@emotion/react'
 
-const GlobalStyle = createGlobalStyle`
+const style = css`
   form {
     width: 400px;
     height: 450px;
@@ -8,7 +9,7 @@ const GlobalStyle = createGlobalStyle`
     border: 1px solid;
     background-color: #f2f217;
     ::placeholder {
-    color: #00225c;
+      color: #00225c;
     }
     input {
       width: 300px;
@@ -39,5 +40,8 @@ const GlobalStyle = createGlobalStyle`
     background-color: #61d2f8;
   }
 `
+const GlobalStyle = () => {
+  return <Global styles={style} />
+}
 
 export default GlobalStyle

@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react'
-import styled from 'styled-components'
+import styled from '@emotion/styled'
 import GlobalStyle from './GlobalStyle'
 import { validate } from './utils/Validate'
 import { Btn } from './utils/Button'
@@ -10,7 +10,7 @@ import { Modals } from './utils/Modals'
 const LoginDiv = styled.div`
   width: 500px;
   height: 100%;
-  border: 1px solid #666;
+  border: 1px solid #666666;
   margin: 100px auto;
   background-color: #fafaf3;
 `
@@ -103,6 +103,7 @@ const LoginForm = () => {
             <option value="남자">남자</option>
             <option value="여자">여자</option>
           </Select>
+
           <Input
             type="password"
             placeholder="패스워드를 입력하세요"

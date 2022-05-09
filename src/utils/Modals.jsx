@@ -11,9 +11,6 @@ const ModalContainer = styled.div`
   display: flex;
   justify-content: center;
   align-content: center;
-  &.close {
-    display: none;
-  }
 `
 const Button = styled.button`
   position: absolute;
@@ -24,9 +21,6 @@ const Button = styled.button`
   border-radius: 3px;
   background-color: #f4beff;
   color: #61d2f8;
-  .disappear {
-    display: none;
-  }
 `
 
 const Userlist = styled.div`
@@ -55,7 +49,7 @@ export const Modals = ({ closeModal, userlist }) => {
           <li>성별: {item.sex}</li>
         </Userlist>
       ))}
-      <Button onClick={closeModal}>X</Button>
+      <Button className='modal' onClick={closeModal}>X</Button>
     </ModalContainer>
   )
 }
