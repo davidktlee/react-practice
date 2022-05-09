@@ -1,9 +1,9 @@
 import { useState, useCallback } from 'react'
-import '../scss/TodoInsert.scss'
+import '../scss/DiaryInsert.scss'
 import { MdAdd } from 'react-icons/md'
 import { validation } from './Validate'
 
-const TodoInsert = ({ onInsert }) => {
+const DiaryInsert = ({ onInsert }) => {
   const [value, setValue] = useState('')
   const onChange = useCallback((e) => {
     setValue(e.target.value)
@@ -20,7 +20,7 @@ const TodoInsert = ({ onInsert }) => {
     [onInsert, value]
   )
   return (
-    <form className="TodoInsert" onSubmit={onSubmit}>
+    <form className="DiaryInsert" onSubmit={onSubmit}>
       <textarea placeholder="오늘의 일기 입력창" value={value} onChange={onChange} />
       <button type="submit">
         <MdAdd />
@@ -28,4 +28,4 @@ const TodoInsert = ({ onInsert }) => {
     </form>
   )
 }
-export default TodoInsert
+export default DiaryInsert

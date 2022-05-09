@@ -1,58 +1,56 @@
 import { useState, useCallback, useRef } from 'react'
-import TodoInsert from './components/TodoInsert'
-import TodoTemplate from './components/TodoTemplate'
-import TodoList from './components/TodoList'
+import DiaryInsert from './components/DiaryInsert'
+import DiaryTemplate from './components/DiaryTemplate'
+import DiaryList from './components/DiaryList'
 
 function App() {
-  const [todos, setTodos] = useState([
-    {
-      id: 1,
-    },
-  ])
-  const [modalState, setModalState] = useState(false)
-  const handleModal = () => {
-    setModalState(true)
-  }
+  const [diaries, setDiaries] = useState([])
+  // const [modalState, setModalState] = useState(false)
+  // const handleModal = () => {
+  //   setModalState(true)
+  // }
   // 값은 바뀌지만 화면에 렌더링 되지 않게 하기위해
-  const nextId = useRef(4)
+  const nextId = useRef(1)
   const onInsert = useCallback(
     (text) => {
-      const todo = {
+      const diary = {
         id: nextId.current,
         text,
         checked: false,
       }
-      setTodos([...todos, todo])
+      setDiaries([...diaries, diary])
       nextId.current += 1
     },
-    [todos]
+    [diaries]
   )
 
   const onRemove = useCallback(
     (id) => {
-      setTodos(todos.filter((todo) => todo.id !== id))
+      setDiaries(diaries.filter((diary) => diary.id !== id))
     },
-    [todos]
+    [diaries]
   )
 
   const onToggle = useCallback(
     (id) => {
-      setTodos(todos.map((todo) => (todo.id === id ? { ...todo, checked: !todo.checked } : todo)))
+      setDiaries(
+        diaries.map((diary) => (diary.id === id ? { ...diary, checked: !diary.checked } : diary))
+      )
     },
-    [todos]
+    [diaries]
   )
 
   return (
-    <TodoTemplate>
-      <TodoInsert onInsert={onInsert} />
-      <TodoList
-        todos={todos}
+    <DiaryTemplate>
+      <DiaryInsert onInsert={onInsert} />
+      <DiaryList
+        diaries={diaries}
         onRemove={onRemove}
         onToggle={onToggle}
-        modalState={modalState}
-        handleModal={handleModal}
+        // modalState={modalState}
+        // handleModal={handleModal}
       />
-    </TodoTemplate>
+    </DiaryTemplate>
   )
 }
 

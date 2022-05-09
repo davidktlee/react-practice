@@ -1,4 +1,4 @@
-.TodoInsert {
+.DiaryInsert {
   display: flex;
   background-color: #495057;
   textarea {
@@ -9,6 +9,7 @@
     font-size: 1.125rem;
     line-height: 1.5;
     color: #fff;
+    resize: none;
     &::placeholder {
       color: rgb(108, 255, 132);
     }
@@ -26,7 +27,6 @@
     display: flex;
     align-items: center;
     cursor: pointer;
-    transition: 0.1s background ease-in;
     &:hover {
       background-color: rgb(251, 110, 206);
     }
