@@ -9,7 +9,7 @@
 
 최소 3글자, 이메일 검증, 회원가입 시 모달 구현
 
-![Alt text](./public/%EA%B2%80%EC%A6%9D%20%EC%99%84%EB%A3%8C%20%EB%B0%8F%20%EB%AA%A8%EB%8B%AC%20%EA%B5%AC%ED%98%84.gif)
+![Alt text](./public/%EA%B2%80%EC%A6%9D%20%EC%99%84%EB%A3%8C%20%EB%B0%8F%20%EB%AA%A8%EB%8B%AC%20%EA%B5%AC%ED%98%84.gif).
 
 ## 4L (liked(좋았던 것), learned(배웠던 것), lacked(부족했던 것), longed for(바라는 것))
 
