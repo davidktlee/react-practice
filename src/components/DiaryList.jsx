@@ -1,11 +1,10 @@
 import DiaryListItem from './DiaryListItem'
-import '../scss/DiaryList.scss'
 
-const DiaryList = ({ diaries, onRemove, onToggle }) => {
+const DiaryList = ({ diaries, onRemove, changeText }) => {
   return (
     <div className="DiaryList">
       {diaries.map((diary) => (
-        <DiaryListItem diary={diary} key={diary.id} onRemove={onRemove} onToggle={onToggle} />
+        <DiaryListItem diary={diary} key={diary.id} onRemove={onRemove} changeText={changeText} />
       ))}
     </div>
   )

@@ -30,15 +30,13 @@ function App() {
     },
     [diaries]
   )
-
-  const onToggle = useCallback(
-    (id) => {
-      setDiaries(
-        diaries.map((diary) => (diary.id === id ? { ...diary, checked: !diary.checked } : diary))
+  const changeText = (id, newText) => {
+    setDiaries(
+      diaries.map((diary) =>
+        diary.id === id ? { ...diary, text: newText, checked: !diary.checked } : diary
       )
-    },
-    [diaries]
-  )
+    )
+  }
 
   return (
     <DiaryTemplate>
@@ -46,7 +44,7 @@ function App() {
       <DiaryList
         diaries={diaries}
         onRemove={onRemove}
-        onToggle={onToggle}
+        changeText={changeText}
         // modalState={modalState}
         // handleModal={handleModal}
       />

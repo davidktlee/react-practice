@@ -1,6 +1,6 @@
 import { MdRemoveCircleOutline } from 'react-icons/md'
 import styled from '@emotion/styled'
-
+import { useState } from 'react'
 const DiaryListItems = styled.div`
   padding: 1rem;
   display: flex;
@@ -35,17 +35,21 @@ const Textarea = styled.textarea`
   font-size: 18px;
   resize: none;
 `
-const DiaryListItem = ({ diary, onRemove, onToggle }) => {
+const DiaryListItem = ({ diary, onRemove, changeText }) => {
   const { id, text, checked } = diary
-
+  const [value, setValue] = useState(text)
+  const onChange = (e) => {
+    setValue(e.target.value)
+    console.log(text)
+  }
   return (
     <>
       <DiaryListItems>
-        {checked ? <Textarea>{text}</Textarea> : <Text>{text}</Text>}
+        {checked ? <Textarea onChange={onChange} value={value}></Textarea> : <Text>{text}</Text>}
         {checked ? (
-          <Button onClick={() => onToggle(id)}>완료</Button>
+          <Button onClick={() => changeText(id, value)}>완료</Button>
         ) : (
-          <Button onClick={() => onToggle(id)}>수정</Button>
+          <Button onClick={() => changeText(id)}>수정</Button>
         )}
         <Remove onClick={() => onRemove(id)}>
           <MdRemoveCircleOutline />
