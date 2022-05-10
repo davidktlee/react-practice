@@ -4,23 +4,7 @@ import TodoTemplate from './components/TodoTemplate'
 import TodoList from './components/TodoList'
 
 function App() {
-  const [todos, setTodos] = useState([
-    {
-      id: 1,
-      text: '리액트 기초',
-      checked: true,
-    },
-    {
-      id: 2,
-      text: '컴포넌트 스타일링',
-      checked: true,
-    },
-    {
-      id: 3,
-      text: '일정관리 스타일링',
-      checked: true,
-    },
-  ])
+  const [todos, setTodos] = useState([])
   // 값은 바뀌지만 화면에 렌더링 되지 않게 하기위해
   const nextId = useRef(4)
   const onInsert = useCallback(

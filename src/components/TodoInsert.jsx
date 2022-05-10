@@ -1,7 +1,7 @@
 import { useState, useCallback } from 'react'
 import './TodoInsert.scss'
 import { MdAdd } from 'react-icons/md'
-
+import { validation } from './Validate'
 const TodoInsert = ({ onInsert }) => {
   const [value, setValue] = useState('')
   const onChange = useCallback((e) => {
@@ -11,9 +11,11 @@ const TodoInsert = ({ onInsert }) => {
 
   const onSubmit = useCallback(
     (e) => {
-      onInsert(value)
-      setValue('')
-      e.preventDefault()
+      if (validation(value)) {
+        onInsert(value)
+        setValue('')
+        e.preventDefault()
+      }
     },
     [onInsert, value]
   )
