@@ -1,0 +1,3 @@
+[submodule "Round2/diary-apps"]
+	path = Round2/diary-apps
+	url = https://github.com/React-handling-skills-Study/OURS-TIL.git
