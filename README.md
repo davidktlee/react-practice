@@ -37,7 +37,7 @@ props에 대한 이해
 
 todo 리스트는 **리액트를 다루는 기술** 책에 나온 내용을 바탕으로 클론 코딩 하였음
 
-![폴더 구조](./Round2/todo-app/public/result%202%20todo%20%EA%B5%AC%EC%A1%B0.PNG)
+![폴더 구조](../my-app/Round2/todo-app/public/result%202%20todo%20%EA%B5%AC%EC%A1%B0.PNG)
 
 ![최소 5글자, 입력하면 list에 남고 제거, 완료 표시 가능](./Round2/todo-app/public/%ED%88%AC%EB%91%90%20%EB%A6%AC%EC%8A%A4%ED%8A%B8%20%EA%B5%AC%ED%98%84.gif)
 
@@ -45,7 +45,7 @@ todo 리스트는 **리액트를 다루는 기술** 책에 나온 내용을 바�
 
 diary는 위의 todo 리스트를 바탕으로 구현 하였으며 수정 내용을 추가 하였음
 
-![폴더 구조](./Round2/diary-app/public/result%202%20diary%20%EA%B5%AC%EC%A1%B0.PNG)
+![폴더 구조](../my-app/Round2/diary-app/public/result%202%20diary%20%EA%B5%AC%EC%A1%B0.PNG)
 
 ![최소 5글자, 입력하면 list에 남고 제거, 완료 표시 가능](./Round2/diary-app/public/%EC%9D%BC%EA%B8%B0%EC%9E%A5%20%EA%B5%AC%ED%98%84.gif)
 
@@ -56,10 +56,9 @@ diary는 위의 todo 리스트를 바탕으로 구현 하였으며 수정 내용
 게더타운이라는 장소에 명성님이 서버 같이 계셔서 항상 도움을 받을 수 있는 것이 항상 좋은 점. <br>
 모든 스터디원 분 들이 마찬가지지만 흔쾌히 시간을 투자 해 주셔서 많이 배우는 것 같다. <br>
 
-
 - 배웠던 것
 
-![diary id값 얻어오는 함수.PNG](./Round2/diary-app/public/diary%20id%EA%B0%92%20%EC%96%BB%EC%96%B4%EC%98%A4%EB%8A%94%20%ED%95%A8%EC%88%98.PNG)
+![diary id값 얻어오는 함수.PNG](../my-app/Round2/diary-app/public/diary%20id%EA%B0%92%20%EC%96%BB%EC%96%B4%EC%98%A4%EB%8A%94%20%ED%95%A8%EC%88%98.PNG)
 
 다이어리를 맵 메소드를 통해 id를 비교하고 맞으면 텍스트의 값을 newText = 새로운 값으로 받아서 바꾸고 checked를 통해 true false 값을 바꿔준다.
 
@@ -75,7 +74,7 @@ diary는 위의 todo 리스트를 바탕으로 구현 하였으며 수정 내용
 
 배운것 2
 
-![changeText 사용.PNG](./Round2/diary-app/public/changeText%20%EC%82%AC%EC%9A%A9.PNG)
+![changeText 사용.PNG](../my-app/Round2/diary-app/public/changeText%20%EC%82%AC%EC%9A%A9.PNG)
 
 changeText를 프롭스로 받아온 후 수정 버튼을 클릭했을 때는 id값만 받아서 일치하는지 확인해주고
 
