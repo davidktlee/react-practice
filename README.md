@@ -100,3 +100,43 @@ props는 해도 해도 부족하다.
 
 게시판 구현? <br>
 처음 코딩을 시작할 때 부터 해보고 싶던 것인데 CRUD를 바탕으로 구현할 수 있을 까?..
+
+### Result of Round 4 - 제품 등록 폼 만들어보기
+
+![폴더 구조](./Round3/public/round3%20product%20%EB%A7%8C%EB%93%A4%EA%B8%B0%20%EA%B5%AC%EC%A1%B0.PNG)
+
+![최소 3글자, 이메일 검증, 회원가입 시 모달 구현](./Round3/public/product%20%EB%A7%8C%EB%93%A4%EA%B8%B0%20%EA%B5%AC%ED%98%84.gif)
+
+## 4L (liked(좋았던 것), learned(배웠던 것), lacked(부족했던 것), longed for(바라는 것))
+
+- 좋았던 것
+
+localStorage을 사용 하면서 get, set 메소드에 대해 공부한 것.
+
+CRUD에 대해 아직 부족하지만 계속 만들면서 익숙해지는 것
+
+- 배웠던 것
+
+1. onClick을 쓸 때 여러 개의 함수를 사용할 수 있는 줄 알았는데 불가능 하다는 것을 깨닫고
+   그 여러 개의 함수를 하나로 묶은 함수를 사용해서 이벤트로 달아 줘야 한다는 것을 배웠다.
+
+```jsx
+수정 완료 버튼에서  id값과 newValue값을 넘겨주면서 modal을 보여주는 값인 boolean 값도 바꾸고 싶었다.
+// 잘못된 예제
+<Button onClick={() => changeText(resultProductInfo, newValue), setBoolean()}>수정완료</Button>
+// 바꾼 예제
+<Button onClick={() => ChangeValue(resultProductInfo.id, newValue)}>수정완료</Button>
+```
+
+2. modal을 보이게 할 때 boolean 값으로 컨트롤 하는데 그 값을 각각의 아이템들을 렌더링 하는 곳에서 만들어야 각각의 모달에 대한 boolean 값을 컨트롤 할 수 있다.
+
+```jsx
+이 함수가 아이템들이 생성되기전인 아이템들의 배열이 있을 때 만들면 배열의 아이템 전체를 컨트롤 하게 된다.
+const viewModal = () => {
+  setIsShow((prev) => !prev)
+}
+```
+
+- 부족했던 것
+
+삼항 연산자나 렌더링 하는 부분에 있어서 어디서 컴포넌트화를 시키고 어느 구조에서 렌더링 할 지 감이 부족한 것 같다. 
