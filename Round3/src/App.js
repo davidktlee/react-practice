@@ -36,6 +36,7 @@ function App() {
 
   useEffect(() => {
     if (resultProductInfos?.length === 0) {
+      localStorage.removeItem('product')
       return
     }
     localStorage.setItem('product', JSON.stringify(resultProductInfos))

@@ -1,12 +1,12 @@
 .default {
-  background-color: #fff;
+  background-color: black;
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  color: #999;
+  color: white;
   font-size: 20px;
 }
 .default:hover {
-  background-color: #999;
-  color: #fff;
+  background-color: #fff;
+  color: black;
 }
