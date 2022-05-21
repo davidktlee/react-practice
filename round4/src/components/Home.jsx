@@ -1,28 +1,9 @@
-import { Link } from 'react-router-dom'
 const Home = () => {
   return (
     <div>
-      <h1>홈</h1>
-      <p>홈, 그 페이지는 가장 먼저 보여주는 페이지</p>
-      <ul>
-        <li>
-          <Link to="/about">소개</Link>
-        </li>
-        <li>
-          <Link to="/profiles/lee">lee의 프로필</Link>
-        </li>
-        <li>
-          <Link to="/profiles/kyungtaek">kyungtaek의 프로필</Link>
-        </li>
-        <li>
-          <Link to="/profiles/void">존재 X</Link>
-        </li>
-        <li>
-          <Link to="/articles/">게시글 목록</Link>
-        </li>
-      </ul>
+      <h1>Home</h1>
+      <div>더미 데이터 가지고 놀기</div>
     </div>
   )
 }
-
 export default Home

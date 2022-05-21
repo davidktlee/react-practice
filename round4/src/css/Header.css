@@ -1,0 +1,31 @@
+header {
+  display: flex;
+  align-items: center;
+  height: 100px;
+  border: 1px solid #666;
+  border-radius: 5px;
+  margin: 10px;
+}
+
+header div {
+  display: flex;
+}
+header span {
+  
+}
+header button {
+  margin: 0 30px;
+}
+a {
+  margin: 10px;
+  padding: 5px;
+  text-decoration: none;
+  background-color: #999;
+  color: #fff;
+  border-radius: 5px;
+  font-size: 20px;
+}
+
+a:hover {
+  text-decoration: underline;
+}
