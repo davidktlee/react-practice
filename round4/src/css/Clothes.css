@@ -1,0 +1,20 @@
+.item-container {
+  display: flex;
+}
+.item-container .items {
+  margin: 10px;
+  padding: 10px;
+  display: inline-block;
+  border: 1px solid #999;
+  border-radius: 5px;
+}
+.item-container h1 {
+  color: white;
+  background-color: #333;
+  padding: 10px;
+}
+.items .item {
+  margin: 10px;
+  color: #333;
+  font-size: 20px;
+}
