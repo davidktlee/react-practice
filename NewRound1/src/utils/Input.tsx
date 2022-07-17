@@ -12,14 +12,14 @@ interface InputState {
   password: number | string
   nickname: string
 }
-type Actions = { type: string; value: string }
+type Actions = { type: string; payload: { value: string; id: string } }
 
 const reducer = (state: InputState, action: Actions) => {
   switch (action.type) {
-    case 'email':
+    case 'change':
       return {
         ...state,
-        email: action.value,
+        [action.payload.id]: action.payload.value,
       }
 
     default:
@@ -34,12 +34,13 @@ const initialState: InputState = {
 }
 const Input = ({ id, type, label, placeholder, validators, value }: Props) => {
   const [input, dispatchInput] = useReducer(reducer, initialState)
-
-  const changeEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
-    console.log(e.currentTarget.value)
-    dispatchInput({ type: 'email', value: e.currentTarget.value })
+  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    dispatchInput({
+      type: 'change',
+      payload: { value: e.currentTarget.value, id: e.currentTarget.id },
+    })
   }
-  const changePassword = () => {}
+
   return (
     <div>
       <div>
@@ -50,7 +51,7 @@ const Input = ({ id, type, label, placeholder, validators, value }: Props) => {
         id={id}
         placeholder={placeholder}
         value={input.email}
-        onChange={changeEmail}
+        onChange={onChange}
       ></input>
     </div>
   )

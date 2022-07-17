@@ -5,4 +5,6 @@ interface validatorsTypes {
   value: string | number
 }
 
+const VALIDATE_EMAIL =  '1'
+
 export const validate = () => {}

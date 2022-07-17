@@ -3,9 +3,9 @@ import { useParams, Link } from 'react-router-dom'
 
 const Items = ({ DummyList }) => {
   const params = useParams()
-  // console.log(params)
+  console.log(params)
   const Dummy = DummyList.filter((dummy) => params.id === dummy.id)
-  console.log(Dummy)
+  // console.log(Dummy)
   return (
     <div className="item-container">
       {Dummy.map((item) => (

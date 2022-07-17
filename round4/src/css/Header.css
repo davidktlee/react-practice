@@ -4,7 +4,15 @@ header {
   border-radius: 5px;
   margin: 10px;
 }
-
+header .nav-login {
+  background-color: #fff;
+  color: black;
+  margin-right: 30px;
+}
+header .nav-login:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
 header .nav-core {
   display: flex;
   justify-content: center;

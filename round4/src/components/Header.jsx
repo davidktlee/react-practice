@@ -10,6 +10,9 @@ const Header = () => {
   return (
     <header>
       <div className="nav-core">
+        <Link className="nav-login" to="/login">
+          Login
+        </Link>
         <Buttons className={'default'} text={'back'} />
         <Link className="home" to="/">
           Home
@@ -45,6 +48,9 @@ const Header = () => {
         </NavLink>
         <NavLink to="/item/date" style={({ isActive }) => (isActive ? activeStyle : undefined)}>
           date
+        </NavLink>
+        <NavLink to="/item/selling" style={({ isActive }) => (isActive ? activeStyle : undefined)}>
+          clothes
         </NavLink>
       </div>
     </header>

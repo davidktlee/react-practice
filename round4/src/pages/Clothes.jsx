@@ -1,5 +1,6 @@
 import styled from '@emotion/styled'
-import { useParams, Link, Outlet } from 'react-router-dom'
+import { useParams, Link, Outlet, useNavigate } from 'react-router-dom'
+import { useState } from 'react'
 
 const Container = styled.div`
   display: flex;
@@ -24,17 +25,28 @@ const Item = styled.div`
     text-decoration: underline;
   }
 `
-const LinkStyle = styled(Link)`
+const Button = styled.button`
   background-color: #fff;
   color: #333;
   border: 1px solid;
 `
 
-const Clothes = ({ DummyList }) => {
+const Clothes = ({ DummyList, onLogin, setOnLogin }) => {
   const params = useParams()
-  // console.log(params)
+  const navigate = useNavigate()
+  console.log(params)
   const Dummy = DummyList.filter((dummy) => params.sellingItem === dummy.sellingItem)
-
+  const loginState = () => {
+    Dummy.forEach((dummy) => {
+      if (onLogin) {
+        alert('plese Login')
+        navigate('/login')
+      } else {
+        navigate(`/items/${dummy.id}/${dummy.sellingItem}/ask`)
+      }
+    })
+  }
+  // const navToAsk = () => {}
   // console.log(Dummy.map((item) => item.currency))
   // console.log(Dummy)
   return (
@@ -64,8 +76,7 @@ const Clothes = ({ DummyList }) => {
           ) : (
             <Item className="red">Last Quantities: {item.normaldist}!!!</Item>
           )}
-
-          <LinkStyle to={`/items/${item.id}/${item.sellingItem}/ask`}>Customer Service</LinkStyle>
+          <Button onClick={loginState}>Cutomer Service</Button>
         </Items>
       ))}
       <Outlet />

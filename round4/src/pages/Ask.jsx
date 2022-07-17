@@ -53,9 +53,9 @@ const Button = styled.button`
     cursor: pointer;
   }
 `
-const Ask = () => {
+const Ask = ({ loginState, onLogin }) => {
   const [text, setText] = useState('')
-  const [boolean, setBoolean] = useState(true)
+  const [boolean, setBoolean] = useState(false) // 로그인 가능 불가능 값
   const changeBool = () => {
     setBoolean((prev) => !prev)
   }
@@ -67,8 +67,8 @@ const Ask = () => {
     <Container>
       <Title>Customer Service</Title>
       <Content>
-        {boolean ? (
-          <TextArea name="" cols="30" rows="10" placeholder="Q&A" onChange={onChange}>
+        {!boolean ? (
+          <TextArea value={text} cols="30" rows="10" placeholder="Q&A" onChange={onChange}>
             {text}
           </TextArea>
         ) : (
