@@ -1,13 +1,14 @@
-import React, { useReducer } from 'react'
+import React, { useEffect, useReducer } from 'react'
 import { ValidatorsTypes, validate } from './Validators'
 
-type Props = {
+interface Props {
   id: string
   type: string
   label: string
   placeholder: string
   validators: ValidatorsTypes[]
   errorText: string
+  inputHandler: (id: string, value: string, isValid: boolean) => void
 }
 interface InputState {
   value: string
@@ -19,9 +20,9 @@ type Actions =
       type: 'change'
       payload: { value: string; validators: ValidatorsTypes[]; isBlur?: boolean }
     }
-  | { type: 'blur' }
+  | { type: 'blur'; validators: ValidatorsTypes[] }
 
-const reducer = (state: InputState, action: Actions) => {
+const reducer = (state: InputState, action: Actions): InputState => {
   switch (action.type) {
     case 'change':
       return {
@@ -33,6 +34,7 @@ const reducer = (state: InputState, action: Actions) => {
       return {
         ...state,
         isBlur: true,
+        isValid: validate(state.value, action.validators),
       }
     default:
       return state
@@ -44,23 +46,25 @@ const initialState: InputState = {
   isValid: false,
   isBlur: false,
 }
-const Input = ({ id, type, label, placeholder, validators, errorText }: Props) => {
+const Input = ({ id, type, label, placeholder, validators, errorText, inputHandler }: Props) => {
   const [input, dispatchInput] = useReducer(reducer, initialState)
+
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    console.log(input)
     dispatchInput({
       type: 'change',
       payload: { value: e.currentTarget.value, validators },
     })
   }
   // onBlur로 변경
-  const onKeyUp = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    validate(e.currentTarget.value, validators)
+  const onBlur = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     dispatchInput({
       type: 'blur',
+      validators,
     })
   }
-
+  useEffect(() => {
+    inputHandler(id, input.value, input.isValid)
+  }, [id, input.value, input.isValid, inputHandler])
   return (
     <div>
       <div>
@@ -72,9 +76,9 @@ const Input = ({ id, type, label, placeholder, validators, errorText }: Props) =
         placeholder={placeholder}
         value={input.value}
         onChange={onChange}
-        onKeyUp={onKeyUp} /* onblur로 바꿔야함 */
+        onBlur={onBlur}
       ></input>
-      {!input.isValid && input.isBlur ? <span>{errorText}</span> : null}
+      {!input.isValid && input.isBlur && <span>{errorText}</span>}
     </div>
   )
 }
